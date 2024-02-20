@@ -16,10 +16,10 @@ export const getGameQuestion = async (req, res) => {
 
     //------------------------------------------------------------------------------------
     try {
-    const { level } = req.params;
-    if (+level < 0 || +level > 9) {
-      throw new Error("level zu hoch oder zu tief");
-    }
+      const { level } = req.params;
+      if (+level < 0 || +level > 9) {
+        throw new Error("level zu hoch oder zu tief");
+      }
     // get random question with matching level...
     const result = await Quest.aggregate([
       { $match: { level: +level } },
