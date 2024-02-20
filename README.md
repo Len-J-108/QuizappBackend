@@ -29,7 +29,7 @@ Feel free to contribute to our project by submitting pull requests or reporting 
 
 ## Impressions:
 
-![](./src/assets/readmeImages/one.png)
-![](./src/assets/readmeImages/two.png)
-![](./src/assets/readmeImages/three.png)
-![](./src/assets/readmeImages/four.png)
+![](./assets/one.png)
+![](./assets/two.png)
+![](./assets/three.png)
+![](./assets/four.png)
