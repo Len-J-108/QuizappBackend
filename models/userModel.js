@@ -77,8 +77,8 @@ userModel.pre('save', async function(next) {
   if (!user.locked){
     if (user.wrongAnswers.length >= 3) {
   
-      const lockedUntil = new Date().getTime() + 2 * 60 * 60 * 1000; // 2 Hours
-      // const lockedUntil = Date.now() + 2 * 60 * 60 * 1000; // 2 Hours
+      // const lockedUntil = new Date().getTime() + 2 * 60 * 60 * 1000; // 2 Hours
+      const lockedUntil = Date.now() + 60 * 20 * 1000; // 20 minutes
       // const lockedUntil = new Date().getTime() + 5 * 1000; // 5 seconds test
       // const lockedUntil = new Date().getTime() + 20 * 1000; // 20 seconds test
       // const lockedUntil = new Date().getTime() + 60 * 1000; // 1 minute

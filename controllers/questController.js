@@ -9,7 +9,7 @@ export const getGameQuestion = async (req, res) => {
   //   return new Promise((resolve, reject) => {
   //     setTimeout(() => {
   //       resolve();
-  //     }, 300)
+  //     }, 3000)
   //   })
   // }
   // await xx();
@@ -125,7 +125,6 @@ export const rightAnswer = async (req, res) => {
     if (question.level === 9) {
       checkQuestionLevel(questionid, id);
     }
-    console.log('rightAnswer done') // ! delete line
     res.status(200).json('rightAnswer end');
     }catch(err) {
       res.status(400).json(err.message);
