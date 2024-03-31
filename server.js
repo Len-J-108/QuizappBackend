@@ -13,8 +13,17 @@ import userRouter from "./routers/userRouter.js";
 import questRouter from './routers/questRouter.js';
 import cookieParser from "cookie-parser";
 
+// Rate Limiter
+import rateLimit from 'express-rate-limit';
+
 const app = express();
 const PORT = process.env.PORT;
+
+const limiter = rateLimit({
+  windowMs: 60 * 1000, // one minute
+  max: 30,
+  message: 'rate limit exceeded',
+})
 
 const httpServer = createServer(app);
 export const io = new Server(httpServer, { 
@@ -23,6 +32,8 @@ export const io = new Server(httpServer, {
     methods: ["GET", "POST"],
   }
  });
+// disable express message...
+app.disable('x-powered-by');
 
 app.use(cookieParser());
 app.use(express.json());
@@ -32,6 +43,7 @@ app.use(
       credentials: true,
   })
 );
+app.use(limiter);
 
 // socket event on connection
 io.on("connection", (socket) => {
