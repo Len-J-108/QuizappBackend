@@ -131,7 +131,6 @@ export const getUserData = async (req, res) => {
 };
 
 export const userStopped = async (req, res) => { 
-  console.log('here');
   const io = req.app.get('socketio'); // socket io connection
   const token = req.cookies.jwt;
   const decodedToken = verifyJwt(token); // Entschlüsseln Sie das JWT-Token mit der verifyJwt-Funktion
