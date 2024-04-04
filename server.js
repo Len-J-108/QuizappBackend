@@ -33,7 +33,7 @@ export const io = new Server(httpServer, {
   }
  });
 // disable express message...
-app.disable('x-powered-by');
+// app.disable('x-powered-by');
 
 app.use(cookieParser());
 app.use(express.json());
@@ -48,6 +48,7 @@ app.use(limiter);
 // socket event on connection
 io.on("connection", (socket) => {
   // console.log('socketIO connection made');
+    // const token = req.cookies.jwt;
 })
 
 // Attach Socket.IO to the server to use it anywhere
