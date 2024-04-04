@@ -23,6 +23,7 @@ const limiter = rateLimit({
   windowMs: 60 * 1000, // one minute
   max: 30,
   message: 'rate limit exceeded',
+  validate: {xForwardedForHeader: false},
 })
 
 const httpServer = createServer(app);
