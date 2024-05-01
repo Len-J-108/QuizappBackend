@@ -29,7 +29,7 @@ const limiter = rateLimit({
 const httpServer = createServer(app);
 export const io = new Server(httpServer, {
   cors: {
-    origin: "https://quizapp2024.netlify.app/",
+    origin: "https://sweet-profiterole-089080.netlify.app/",
     methods: ["GET", "POST"],
   },
 });
