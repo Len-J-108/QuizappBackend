@@ -10,11 +10,11 @@ import { Server } from "socket.io";
 
 // Routers
 import userRouter from "./routers/userRouter.js";
-import questRouter from './routers/questRouter.js';
+import questRouter from "./routers/questRouter.js";
 import cookieParser from "cookie-parser";
 
 // Rate Limiter
-import rateLimit from 'express-rate-limit';
+import rateLimit from "express-rate-limit";
 
 const app = express();
 const PORT = process.env.PORT;
@@ -22,17 +22,17 @@ const PORT = process.env.PORT;
 const limiter = rateLimit({
   windowMs: 60 * 1000, // one minute
   max: 30,
-  message: 'rate limit exceeded',
-  validate: {xForwardedForHeader: false},
-})
+  message: "rate limit exceeded",
+  validate: { xForwardedForHeader: false },
+});
 
 const httpServer = createServer(app);
-export const io = new Server(httpServer, { 
+export const io = new Server(httpServer, {
   cors: {
-    origin: "http://localhost:5173",
+    origin: "https://quizapp2024.netlify.app/",
     methods: ["GET", "POST"],
-  }
- });
+  },
+});
 // disable express message...
 // app.disable('x-powered-by');
 
@@ -40,20 +40,20 @@ app.use(cookieParser());
 app.use(express.json());
 app.use(
   cors({
-      origin: 'http://localhost:5173', // 5173 is where we have set our frontend to run
-      credentials: true,
-  })
+    origin: "http://localhost:5173", // 5173 is where we have set our frontend to run
+    credentials: true,
+  }),
 );
 app.use(limiter);
 
 // socket event on connection
 io.on("connection", (socket) => {
   // console.log('socketIO connection made');
-    // const token = req.cookies.jwt;
-})
+  // const token = req.cookies.jwt;
+});
 
 // Attach Socket.IO to the server to use it anywhere
-app.set('socketio', io);
+app.set("socketio", io);
 
 // Routes
 app.use("/users", userRouter);
@@ -62,4 +62,3 @@ app.use("/questions", questRouter);
 httpServer.listen(PORT, () => {
   console.log(`Server is listening on port:${PORT}`);
 });
-
